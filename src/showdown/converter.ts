@@ -1,4 +1,4 @@
-import Showdown from 'showdown';
+import Showdown from "showdown";
 import {
   type FrontMatterResult,
   type SanitizeOptions,
@@ -6,10 +6,10 @@ import {
   frontmatter,
   getOptions,
   sanitizeOutput,
-} from '.';
+} from ".";
 
 export default class Converter<
-  T = Record<string, any>,
+  T = Record<string, any>
 > extends Showdown.Converter {
   private _sanOpts: SanitizeOptions | undefined;
   private _content: string;
@@ -21,10 +21,10 @@ export default class Converter<
       customClassJsx = false,
       showdownOptions,
       sanitizeOptions,
-    }: ShowMarkOptions,
+    }: ShowMarkOptions
   ) {
     super(
-      getOptions({ customClassJsx, showdownOptions, sanitizeOptions }).sh_opts,
+      getOptions({ customClassJsx, showdownOptions, sanitizeOptions }).sh_opts
     );
     this._sanOpts = getOptions({
       customClassJsx,
@@ -35,12 +35,25 @@ export default class Converter<
     this._rawContent = frontmatter<T>(this._content);
     this._rawHtml = this.makeHtml(this._rawContent.content);
   }
+  /**
+   * Returns the raw HTML converted by Showdown from the markdown content.
+   * Does not include any frontmatter data.
+   */
   get rawHtml(): string {
     return this._rawHtml;
   }
+  /**
+   * Returns the HTML converted by Showdown from the markdown content,
+   * stripped of any unwanted HTML tags or attributes via the
+   * `sanitize-html` library. Does not include any frontmatter data.
+   */
   get cleanHtml(): string {
     return sanitizeOutput(this._rawHtml, this._sanOpts);
   }
+  /**
+   * Retrieves the metadata extracted from the frontmatter of the markdown content.
+   * @returns The metadata as a JSON object of type T.
+   */
   get metadata(): T {
     return this._rawContent.data;
   }
