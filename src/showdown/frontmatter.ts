@@ -1,4 +1,4 @@
-import { load } from "js-yaml";
+import { load } from 'js-yaml';
 export type DataProps = {
   lines: string[];
   metaIndices: number[];
@@ -44,7 +44,7 @@ function getData(linesPros: DataProps) {
   const { lines, metaIndices } = linesPros;
   if (metaIndices.length > 0) {
     const dat = lines.slice(metaIndices[0] + 1, metaIndices[1]);
-    const data = load(dat.join("\n"));
+    const data = load(dat.join('\n'));
     return data;
   }
   return {};
@@ -64,8 +64,8 @@ function getData(linesPros: DataProps) {
 function getContent(linesPros: DataProps): string {
   const { lines, metaIndices } = linesPros;
   return metaIndices.length > 0
-    ? lines.slice(metaIndices[1] + 1).join("\n")
-    : lines.join("\n");
+    ? lines.slice(metaIndices[1] + 1).join('\n')
+    : lines.join('\n');
 }
 
 /**
@@ -79,9 +79,9 @@ function getContent(linesPros: DataProps): string {
  *   markdown content after the frontmatter has been stripped.
  */
 export default function frontmatter<T = Record<string, any>>(
-  mdcontent: string
+  mdcontent: string,
 ): FrontMatterResult<T> {
-  const lines = mdcontent.split("\n");
+  const lines = mdcontent.split('\n');
   const metaIndices = lines.reduce(findMetaIndices, [] as number[]);
   const data = getData({ lines, metaIndices }) as T;
   const content: string = getContent({ lines, metaIndices });

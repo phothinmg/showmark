@@ -6,6 +6,12 @@ export default defineConfig({
       format: 'esm',
       syntax: 'es2021',
       dts: true,
+      output: {
+        externals: {
+          showdown: 'showdown',
+          'js-yaml': 'js-yaml',
+        },
+      },
     },
   ],
 });
