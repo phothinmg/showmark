@@ -1,15 +1,15 @@
-import type Showdown from "showdown";
-import { customClass } from "../extensions";
-import type { SanitizeOptions } from "./index";
+import type Showdown from 'showdown';
+import { customClass } from '../extensions';
+import type { SanitizeOptions } from './index';
 
 // Types
-type DefaultExt = Pick<Showdown.ConverterOptions, "extensions">;
+type DefaultExt = Pick<Showdown.ConverterOptions, 'extensions'>;
 export type ShowDownOptions = Pick<
   Showdown.ConverterOptions,
-  | "openLinksInNewWindow"
-  | "headerLevelStart"
-  | "simpleLineBreaks"
-  | "extensions"
+  | 'openLinksInNewWindow'
+  | 'headerLevelStart'
+  | 'simpleLineBreaks'
+  | 'extensions'
 >;
 export type ShowMarkOptions = {
   /**
@@ -49,7 +49,7 @@ export default function getOptions({
   sh_opts: ShowDownOptions;
   sanitizeOptions: SanitizeOptions | undefined;
 } {
-  const dfext: DefaultExt["extensions"] = [customClass(customClassJsx)];
+  const dfext: DefaultExt['extensions'] = [customClass(customClassJsx)];
   const sh_opts: Showdown.ConverterOptions = {
     backslashEscapesHTMLTags: false,
     completeHTMLDocument: false,
