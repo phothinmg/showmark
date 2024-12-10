@@ -1,4 +1,4 @@
-import Showdown from 'showdown';
+import Showdown from "showdown";
 import {
   type FrontMatterResult,
   type SanitizeOptions,
@@ -6,10 +6,10 @@ import {
   frontmatter,
   getOptions,
   sanitizeOutput,
-} from '.';
+} from ".";
 
 export default class Converter<
-  T = Record<string, any>,
+  T = Record<string, any>
 > extends Showdown.Converter {
   private _sanOpts: SanitizeOptions | undefined;
   private _content: string;
@@ -19,12 +19,12 @@ export default class Converter<
     content: string,
     {
       customClassJsx = false,
-      showdownOptions,
-      sanitizeOptions,
-    }: ShowMarkOptions,
+      showdownOptions = {},
+      sanitizeOptions = {},
+    }: ShowMarkOptions
   ) {
     super(
-      getOptions({ customClassJsx, showdownOptions, sanitizeOptions }).sh_opts,
+      getOptions({ customClassJsx, showdownOptions, sanitizeOptions }).sh_opts
     );
     this._sanOpts = getOptions({
       customClassJsx,
