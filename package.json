@@ -6,13 +6,17 @@
     ".": {
       "types": "./dist/index.d.ts",
       "import": "./dist/index.js"
+    },
+    "./frontmatter": {
+      "types": "./dist/frontmatter/index.d.ts",
+      "import": "./dist/frontmatter/index.js"
+    },
+    "./jsx": {
+      "types": "./dist/jsx/index.d.ts",
+      "import": "./dist/jsx/index.js"
     }
   },
-  "module": "./dist/index.js",
-  "types": "./dist/index.d.ts",
-  "files": [
-    "dist"
-  ],
+  "files": ["dist"],
   "scripts": {
     "build": "rslib build",
     "check": "biome check --write",
@@ -27,11 +31,21 @@
     "@types/node": "^22.8.1",
     "@types/sanitize-html": "^2.13.0",
     "@types/showdown": "^2.0.6",
+    "showmark-ctypes": "^0.1.0",
     "typescript": "^5.6.3",
     "vitest": "^2.1.8"
   },
   "dependencies": {
+    "@babel/core": "^7.26.0",
+    "@babel/parser": "^7.26.3",
+    "@babel/plugin-transform-react-jsx": "^7.25.9",
+    "@babel/plugin-transform-typescript": "^7.26.3",
+    "@babel/preset-env": "^7.26.0",
+    "@babel/preset-react": "^7.26.3",
+    "@babel/preset-typescript": "^7.26.0",
+    "@types/babel__core": "^7.20.5",
     "js-yaml": "^4.1.0",
+    "markdown-extensions": "^2.0.0",
     "sanitize-html": "^2.13.1",
     "showdown": "^2.1.0"
   }

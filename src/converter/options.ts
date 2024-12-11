@@ -1,4 +1,5 @@
 import type Showdown from 'showdown';
+import type { Flavor } from 'showdown';
 import { customClass } from '../extensions';
 import type { SanitizeOptions } from './index';
 
@@ -11,7 +12,7 @@ export type ShowDownOptions = Pick<
   | 'simpleLineBreaks'
   | 'extensions'
 >;
-export type ShowMarkOptions = {
+export interface ShowMarkOptions {
   /**
    * Class for custom-css extension
    * false = <h1 class="foo">Foo</h1>
@@ -25,31 +26,30 @@ export type ShowMarkOptions = {
    * Reast of the all are already set.
    */
   showdownOptions?: ShowDownOptions;
+  flavor?: Flavor;
   /**
    * sanitize-html libray options
    * @see https://github.com/apostrophecms/sanitize-html#default-options
    */
   sanitizeOptions?: SanitizeOptions;
-};
+}
 /**
  * Gets the options for showdown. This function takes care of merging the
  * default options with the user-provided options.
- *
- * @param {ShowMarkOptions} opts The options to merge with the default options.
- *
+ * @param {ShowMarkOptions} options The options to merge with the default options.
  * @returns {Object} An object with two properties, `sh_opts` and `sanitizeOptions`.
- * `sh_opts` is the merged options for showdown, and `sanitizeOptions` is the
- * user-provided options for sanitize-html.
+`sh_opts` is the merged options for showdown, and `sanitizeOptions` is the
+user-provided options for sanitize-html.
  */
-export default function getOptions({
-  customClassJsx,
-  showdownOptions,
-  sanitizeOptions,
-}: ShowMarkOptions): {
+export default function getOptions(options?: ShowMarkOptions): {
   sh_opts: ShowDownOptions;
   sanitizeOptions: SanitizeOptions | undefined;
+  flavor: Flavor;
 } {
-  const dfext: DefaultExt['extensions'] = [customClass(customClassJsx)];
+  const dfext: DefaultExt['extensions'] = [
+    customClass(options?.customClassJsx),
+  ];
+  const flavor = options?.flavor ?? 'github';
   const sh_opts: Showdown.ConverterOptions = {
     backslashEscapesHTMLTags: false,
     completeHTMLDocument: false,
@@ -65,14 +65,15 @@ export default function getOptions({
     metadata: true,
     noHeaderId: true,
     omitExtraWLInCodeBlocks: false,
-    openLinksInNewWindow: showdownOptions?.openLinksInNewWindow ?? false,
+    openLinksInNewWindow:
+      options?.showdownOptions?.openLinksInNewWindow ?? false,
     parseImgDimensions: true,
-    headerLevelStart: showdownOptions?.headerLevelStart ?? 1,
+    headerLevelStart: options?.showdownOptions?.headerLevelStart ?? 1,
     prefixHeaderId: false,
     rawHeaderId: false,
     rawPrefixHeaderId: false,
     requireSpaceBeforeHeadingText: true,
-    simpleLineBreaks: showdownOptions?.simpleLineBreaks ?? false,
+    simpleLineBreaks: options?.showdownOptions?.simpleLineBreaks ?? false,
     simplifiedAutoLink: true,
     smartIndentationFix: false,
     smoothLivePreview: false,
@@ -82,7 +83,7 @@ export default function getOptions({
     tablesHeaderId: false,
     tasklists: true,
     underline: true,
-    extensions: dfext.concat(showdownOptions?.extensions ?? []),
+    extensions: dfext.concat(options?.showdownOptions?.extensions ?? []),
   };
-  return { sh_opts, sanitizeOptions };
+  return { sh_opts, sanitizeOptions: options?.sanitizeOptions, flavor };
 }

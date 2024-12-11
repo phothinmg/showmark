@@ -1,9 +1,7 @@
-import { Converter, frontmatter } from './showdown';
-import type {
-  FrontMatterResult,
-  SanitizeOptions,
-  ShowMarkOptions,
-} from './showdown';
+import { Converter } from './converter';
+import type { SanitizeOptions, ShowMarkOptions } from './converter';
 
-export { frontmatter, Converter };
-export type { FrontMatterResult, SanitizeOptions, ShowMarkOptions };
+// =======================================
+
+export type { SanitizeOptions, ShowMarkOptions };
+export default Converter;

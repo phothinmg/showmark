@@ -1,39 +1,25 @@
-import Showdown from "showdown";
+import Showdown from 'showdown';
 import {
-  type FrontMatterResult,
   type SanitizeOptions,
   type ShowMarkOptions,
-  frontmatter,
   getOptions,
   sanitizeOutput,
-} from ".";
-
+} from '.';
+import frontmatter, { type FrontMatterResult } from '../frontmatter';
 export default class Converter<
-  T = Record<string, any>
+  T = Record<string, any>,
 > extends Showdown.Converter {
   private _sanOpts: SanitizeOptions | undefined;
   private _content: string;
   private _rawContent: FrontMatterResult<T>;
   private _rawHtml: string;
-  constructor(
-    content: string,
-    {
-      customClassJsx = false,
-      showdownOptions = {},
-      sanitizeOptions = {},
-    }: ShowMarkOptions
-  ) {
-    super(
-      getOptions({ customClassJsx, showdownOptions, sanitizeOptions }).sh_opts
-    );
-    this._sanOpts = getOptions({
-      customClassJsx,
-      showdownOptions,
-      sanitizeOptions,
-    }).sanitizeOptions;
+  constructor(content: string, options?: ShowMarkOptions) {
+    super(getOptions(options).sh_opts);
+    this._sanOpts = getOptions(options).sanitizeOptions;
     this._content = content;
     this._rawContent = frontmatter<T>(this._content);
     this._rawHtml = this.makeHtml(this._rawContent.content);
+    this.setFlavor(getOptions(options).flavor);
   }
   /**
    * Returns the raw HTML converted by Showdown from the markdown content.

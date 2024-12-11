@@ -12,6 +12,12 @@ export default defineConfig({
           'js-yaml': 'js-yaml',
         },
       },
+      bundle: false,
     },
   ],
+  source: {
+    entry: {
+      index: ['./src/**/*'],
+    },
+  },
 });
