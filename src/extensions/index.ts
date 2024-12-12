@@ -1,3 +1,3 @@
-import customClass from './custom-class';
+import customClass from "./custom-class.js";
 
 export { customClass };

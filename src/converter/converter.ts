@@ -1,13 +1,13 @@
-import Showdown from 'showdown';
+import Showdown from "showdown";
 import {
   type SanitizeOptions,
   type ShowMarkOptions,
   getOptions,
   sanitizeOutput,
-} from '.';
-import frontmatter, { type FrontMatterResult } from '../frontmatter';
+} from "./index.js";
+import frontmatter, { type FrontMatterResult } from "../frontmatter/index.js";
 export default class Converter<
-  T = Record<string, any>,
+  T = Record<string, any>
 > extends Showdown.Converter {
   private _sanOpts: SanitizeOptions | undefined;
   private _content: string;

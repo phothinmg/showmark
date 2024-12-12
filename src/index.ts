@@ -1,5 +1,5 @@
-import { Converter } from './converter';
-import type { SanitizeOptions, ShowMarkOptions } from './converter';
+import { Converter } from "./converter/index.js";
+import type { SanitizeOptions, ShowMarkOptions } from "./converter/index.js";
 
 // =======================================
 
