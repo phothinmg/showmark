@@ -4,33 +4,43 @@
   "type": "module",
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
-      "import": "./dist/index.js"
+      "types": "./index.d.ts"
+    },
+    "./converter": {
+      "types": "./lib/converter/index.d.ts",
+      "import": "./lib/converter/index.js"
     },
     "./frontmatter": {
-      "types": "./dist/frontmatter/index.d.ts",
-      "import": "./dist/frontmatter/index.js"
+      "types": "./lib/frontmatter/index.d.ts",
+      "import": "./lib/frontmatter/index.js"
     },
     "./jsx": {
-      "types": "./dist/jsx/index.d.ts",
-      "import": "./dist/jsx/index.js"
+      "types": "./lib/jsx/index.d.ts",
+      "import": "./lib/jsx/index.js"
+    },
+    "./react": {
+      "types": "./lib/react/index.d.ts",
+      "import": "./lib/react/index.js"
     }
   },
   "files": [
-    "dist"
+    "lib",
+    "index.d.ts",
+    "types.d.ts"
   ],
   "scripts": {
-    "build": "rslib build",
+    "build": "tsc",
     "check": "biome check --write",
-    "dev": "rslib build --watch",
     "format": "biome format --write"
   },
   "devDependencies": {
     "@biomejs/biome": "^1.9.3",
     "@types/js-yaml": "^4.0.9",
     "@types/node": "^22.8.1",
+    "@types/react": "^19.0.1",
     "@types/sanitize-html": "^2.13.0",
     "@types/showdown": "^2.0.6",
+    "react": "^19.0.0",
     "typescript": "^5.6.3"
   },
   "dependencies": {
@@ -44,6 +54,7 @@
     "@types/babel__core": "^7.20.5",
     "js-yaml": "^4.1.0",
     "sanitize-html": "^2.13.1",
-    "showdown": "^2.1.0"
+    "showdown": "^2.1.0",
+    "showmark-ctypes": "^0.1.0"
   }
 }

@@ -1,9 +1,9 @@
-import { type Node, transformFromAstSync } from "@babel/core";
-import { parse } from "@babel/parser";
+import { type Node, transformFromAstSync } from '@babel/core';
+import { parse } from '@babel/parser';
 
-import { Converter, type ShowMarkOptions } from "../converter/index.js";
+import { Converter, type ShowMarkOptions } from '../converter/index.js';
 
-export type JSXSource = "react" | "preact";
+export type JSXSource = 'react' | 'preact';
 export interface JSXCompilerOptions {
   jsxSource?: JSXSource;
   fileName?: string;
@@ -20,12 +20,12 @@ export interface JSXCompilerOptions {
 const jsxCompiler = (
   content: string,
   compilerOptions?: JSXCompilerOptions,
-  converterOptions?: ShowMarkOptions
+  converterOptions?: ShowMarkOptions,
 ) => {
   const _html = new Converter(content, converterOptions).cleanHtml;
-  const _className = compilerOptions?.className ?? "showmark";
-  const _jsxSource = compilerOptions?.jsxSource ?? "react";
-  const _fileName = compilerOptions?.fileName ?? "compiled.js";
+  const _className = compilerOptions?.className ?? 'showmark';
+  const _jsxSource = compilerOptions?.jsxSource ?? 'react';
+  const _fileName = compilerOptions?.fileName ?? 'compiled.js';
   const _jsxReact = `
   export default function MarkdownContent(){
     return (
@@ -47,11 +47,11 @@ const jsxCompiler = (
     )
   }
   `;
-  const _jsxContent = _jsxSource === "preact" ? _jsxPreact : _jsxReact;
+  const _jsxContent = _jsxSource === 'preact' ? _jsxPreact : _jsxReact;
 
   const parsedAst = parse(_jsxContent, {
-    sourceType: "module",
-    plugins: ["jsx", "typescript"],
+    sourceType: 'module',
+    plugins: ['jsx', 'typescript'],
   });
 
   //
@@ -59,7 +59,7 @@ const jsxCompiler = (
     filename: _fileName,
     presets: [
       [
-        "@babel/preset-env",
+        '@babel/preset-env',
         {
           targets: {
             esmodules: true,
@@ -67,9 +67,9 @@ const jsxCompiler = (
           modules: false,
         },
       ],
-      ["@babel/preset-react"],
+      ['@babel/preset-react'],
       [
-        "@babel/preset-typescript",
+        '@babel/preset-typescript',
         {
           allowNamespaces: true,
           onlyRemoveTypeAnnotations: true,
@@ -77,12 +77,12 @@ const jsxCompiler = (
       ],
     ],
     plugins: [
-      "@babel/plugin-transform-typescript",
+      '@babel/plugin-transform-typescript',
       [
-        "@babel/plugin-transform-react-jsx",
+        '@babel/plugin-transform-react-jsx',
         {
           throwIfNamespace: false, // defaults to true
-          runtime: _jsxSource === "preact" ? "classic" : "automatic",
+          runtime: _jsxSource === 'preact' ? 'classic' : 'automatic',
         },
       ],
     ],

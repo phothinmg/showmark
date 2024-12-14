@@ -5,7 +5,7 @@
 
 # Dist
 node_modules
-dist/
+lib/
 
 # IDE
 .vscode/*
@@ -14,3 +14,5 @@ dist/
 
 a.ts
 a.md
+notes
+
