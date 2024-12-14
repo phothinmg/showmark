@@ -56,5 +56,9 @@
     "sanitize-html": "^2.13.1",
     "showdown": "^2.1.0",
     "showmark-ctypes": "^0.1.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/phothinmg/showmark.git"
   }
 }
