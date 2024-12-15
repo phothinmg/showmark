@@ -1,6 +1,6 @@
 {
   "name": "showmark",
-  "version": "0.6.0",
+  "version": "0.6.1",
   "type": "module",
   "exports": {
     ".": {
@@ -16,7 +16,9 @@
       "import": "./lib/jsx/index.js"
     }
   },
-  "files": ["lib"],
+  "files": [
+    "lib"
+  ],
   "scripts": {
     "build": "tsc",
     "check": "biome check --write",
