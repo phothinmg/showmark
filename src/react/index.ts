@@ -1,8 +1,8 @@
-import React, { type ReactElement, type ReactNode } from 'react';
-import type { MarkdownComponents } from 'showmark-ctypes';
+import React, { type ReactElement, type ReactNode } from "react";
+import type { MarkdownComponents } from "showmark-ctypes/types";
 
 type MergeComponents = (
-  currentComponent: Readonly<MarkdownComponents>,
+  currentComponent: Readonly<MarkdownComponents>
 ) => MarkdownComponents;
 
 type Props = {
@@ -27,7 +27,7 @@ const MarkdownContext = React.createContext(emptyComponents);
 export function useMarkdownComponents(components?: AdditionalComponenrts) {
   const contextComponents = React.useContext(MarkdownContext);
   return React.useMemo(() => {
-    if (typeof components === 'function') {
+    if (typeof components === "function") {
       return components(contextComponents);
     }
     return { ...contextComponents, ...components };
@@ -42,7 +42,7 @@ export function MarkdownProvider({
   let allComponents: Readonly<MarkdownComponents>;
   if (disableParentContext) {
     allComponents =
-      typeof components === 'function'
+      typeof components === "function"
         ? components(emptyComponents)
         : components || emptyComponents;
   } else {
@@ -51,6 +51,6 @@ export function MarkdownProvider({
   return React.createElement(
     MarkdownContext.Provider,
     { value: allComponents },
-    children,
+    children
   );
 }
