@@ -20,15 +20,53 @@ yarn add showmark
 
 ## Usage
 
-`example.md`
+### Convert to html
 
-```markdown
+```ts
+import Converter from "showmark";
+
+const mdContent = `
 ---
 title: "Hello"
 date: "2024-12-12"
 ---
 
 # Hello World
+
+[.foo]Foo
+`;
+
+const converter = new Converter(mdContent, {
+  customClassJsx: false,
+  showdownOptions: {
+    /** showdown-options */
+  },
+  sanitizeOptions: {
+    /**sanitize-html-options */
+  },
+});
+
+/* 
+Frontmatter Data
+{ title: 'Hello', date: '2024-12-12' } 
+ */
+console.log(converter.metadata);
+
+/*
+  Raw converted HTML
+
+  <h1>Hello World</h1>
+  <p class="foo">Foo</p>
+ */
+console.log(converter.rawHtml);
+
+/*
+ Sanitized HTML
+
+  <h1>Hello World</h1>
+  <p class="foo">Foo</p>
+ */
+console.log(converter.cleanHtml);
 ```
 
-### Convert to html
+### Compile to JSX
