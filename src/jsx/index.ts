@@ -23,7 +23,7 @@ const jsxCompiler = (
   converterOptions?: ShowMarkOptions,
 ) => {
   const _html = new Converter(content, converterOptions).cleanHtml;
-  const _className = compilerOptions?.className ?? 'showmark';
+  const _className = compilerOptions?.className ?? 'prose dark:prose-invert';
   const _jsxSource = compilerOptions?.jsxSource ?? 'react';
   const _fileName = compilerOptions?.fileName ?? 'compiled.js';
   const _jsxReact = `
