@@ -49,5 +49,10 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/phothinmg/showmark.git"
-  }
+  },
+  "keywords": [
+    "Showdown.js",
+    "MDX Components",
+    "Markdown"
+  ]
 }
