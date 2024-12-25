@@ -14,6 +14,10 @@
     "./jsx": {
       "types": "./lib/jsx/index.d.ts",
       "import": "./lib/jsx/index.js"
+    },
+    "./extensions": {
+      "types": "./lib/extensions/index.d.ts",
+      "import": "./lib/extensions/index.js"
     }
   },
   "files": [
