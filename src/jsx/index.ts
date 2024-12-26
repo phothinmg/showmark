@@ -91,6 +91,8 @@ const jsxCompiler = (
     map: result?.map,
     metadata: result?.metadata,
     ast: result?.ast,
+    reactJsx: _jsxReact,
+    preactJsx: _jsxPreact,
   };
 };
 
