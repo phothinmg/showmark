@@ -37,6 +37,7 @@ const jsxCompiler = (
   const _jsxSource = compilerOptions?.jsxSource ?? "react";
   const _fileName = compilerOptions?.fileName ?? "compiled.js";
   const _jsxReact = `
+  import React from "react"
   export default function MarkdownContent(){
     return (
       <div className="${_className}">
