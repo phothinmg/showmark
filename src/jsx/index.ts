@@ -78,17 +78,12 @@ const jsxCompiler = (
         },
       ],
       ["@babel/preset-react"],
-      [
-        "@babel/preset-typescript",
-        {
-          allowNamespaces: true,
-          onlyRemoveTypeAnnotations: true,
-        },
-      ],
+      ["@babel/preset-typescript"],
     ],
     plugins: [
       "@babel/plugin-transform-typescript",
-      "@babel/plugin-transform-react-jsx",
+
+      ["@babel/plugin-transform-react-jsx"],
     ],
   });
   return {
