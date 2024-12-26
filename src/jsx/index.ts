@@ -88,13 +88,7 @@ const jsxCompiler = (
     ],
     plugins: [
       "@babel/plugin-transform-typescript",
-      [
-        "@babel/plugin-transform-react-jsx",
-        {
-          throwIfNamespace: false, // defaults to true
-          runtime: _jsxSource === "preact" ? "classic" : "automatic",
-        },
-      ],
+      "@babel/plugin-transform-react-jsx",
     ],
   });
   return {
